@@ -27,15 +27,21 @@ public class ShoppingCartUtils {
         System.out.println(String.format("%" + LINE_LIMIT + "s", lineCharacter).replace(" ", lineCharacter));
     }
 
+    public static void printTextInCenter(String message) {
+        printTextInCenter("|", message, "|");
+    }
+
     /**
      *
+     * @param prefix
      * @param message
+     * @param suffix
      */
-    public static void printTextInCenter(String message) {
+    public static void printTextInCenter(String prefix, String message, String suffix) {
         int remainingLenght = LINE_LIMIT - message.length();
         if (remainingLenght > 1) {
             System.out.println(
-                    String.format("%-" + (int) (remainingLenght / 2) + "s%" + message.length() + "s %" + (int) (remainingLenght / 2) + "s", "|", message, "|"));
+                    String.format("%-" + (int) (remainingLenght / 2) + "s%" + message.length() + "s %" + (int) (remainingLenght / 2) + "s", prefix, message, suffix));
         } else {
             System.out.println(message);
         }

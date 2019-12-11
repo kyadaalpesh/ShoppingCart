@@ -172,7 +172,7 @@ public class DiscountSlab implements Comparable<DiscountSlab> {
     @Override
     public String toString() {
         return String.format("DiscountSlab [%-30s] [%10s]",
-                lower + ShoppingCart.Currency + " - " + upper + ShoppingCart.Currency,
+                lower + ShoppingCart.CURRENCY + " - " + upper + ShoppingCart.CURRENCY,
                 discount + "%");
 
     }

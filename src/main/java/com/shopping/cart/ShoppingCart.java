@@ -1,6 +1,8 @@
 package com.shopping.cart;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
@@ -12,26 +14,19 @@ import java.util.TreeSet;
  */
 public class ShoppingCart {
 
-    public static String Currency = "$";
+    public static final String CURRENCY = "$";
 
     private final Set<DiscountSlab> availableDiscountSlabs = new TreeSet<>();
+    private final List<CustomterBill> customerBills = new ArrayList<>();
     // For reading user inputs
     private final Scanner scanner = new Scanner(System.in);
 
-    /**
-     *
-     * @param args
-     */
-    public static void main(String[] args) {
+    public Set<DiscountSlab> getAvailableDiscountSlabs() {
+        return availableDiscountSlabs;
+    }
 
-        ShoppingCart shoppingCart = new ShoppingCart();
-
-        // Adding default discount slabs : lowerLimit-upperLimit=discount i.e 5000-10000=10
-        shoppingCart.addDiscountSlab(new DiscountSlab("0-5000=0"));
-        shoppingCart.addDiscountSlab(new DiscountSlab("5000-10000=10"));
-        shoppingCart.addDiscountSlab(new DiscountSlab("10000-~=20"));
-        // Do shoping
-        shoppingCart.shoping();
+    public List<CustomterBill> getCustomerBills() {
+        return customerBills;
     }
 
     /**
@@ -59,14 +54,21 @@ public class ShoppingCart {
         printDiscountSlab();
 
         // Enter Billing Detail
-        billingDetails();
+        customerPurchaseDetails();
+
+        // Calculate Bills
+        calculateBills();
+        // Good bye message
+        ShoppingCartUtils.printTextInCenter("Bye Bye " + System.getProperty("user.name") + "!!, See you again.");
+        ShoppingCartUtils.printLine("*");
     }
 
     /**
      *
      */
     private void printDiscountSlab() {
-        ShoppingCartUtils.printTextInCenter("Following are avalable discount slabs");
+        ShoppingCartUtils.printLine("*");
+        ShoppingCartUtils.printTextInCenter("Following are available discount slabs ");
         ShoppingCartUtils.printLine("*");
         int counter = 1;
         Map<Integer, DiscountSlab> mappingOfDiscountSlabs = new HashMap<>();
@@ -80,10 +82,15 @@ public class ShoppingCart {
             }
             userMessage += "Enter 0-" + (counter - 1) + " to remove particular slab, ";
         }
-        userMessage += "Enter " + counter + " For add new discount slab or press enter to countine :";
+        userMessage += "Enter " + counter + " For add new discount slab or press any key to countine :";
         ShoppingCartUtils.printLine("*");
         System.out.print(userMessage);
-        int userInput = scanner.nextInt();
+        int userInput;
+        try {
+            userInput = Integer.parseInt(scanner.nextLine());
+        } catch (Exception exception) {
+            userInput = counter + 1; // to countinue
+        }
         if (userInput == counter) {
             // Add the slab
             addDiscountSlabFromUser();
@@ -104,7 +111,7 @@ public class ShoppingCart {
      */
     private void addDiscountSlabFromUser() {
         System.out.print(DiscountSlab.HELP + ":");
-        String userInput = scanner.next();
+        String userInput = scanner.nextLine();
         try {
             addDiscountSlab(new DiscountSlab(userInput));
             // Back to printing page
@@ -115,7 +122,94 @@ public class ShoppingCart {
         }
     }
 
-    private void billingDetails() {
+    /**
+     *
+     * @param customterBill
+     */
+    public void addCustomerBill(CustomterBill customterBill) {
+        customerBills.add(customterBill);
+    }
 
+    /**
+     * Entering Customer bill detail
+     */
+    private void customerPurchaseDetails() {
+        ShoppingCartUtils.printLine("*");
+        ShoppingCartUtils.printTextInCenter("Following are available customer purchase details");
+        ShoppingCartUtils.printLine("*");
+        int counter = 1;
+        String userMessage = "";
+        if (customerBills.isEmpty()) {
+            ShoppingCartUtils.printTextInCenter("There is no customer purchase details available.");
+        } else {
+            for (CustomterBill customerBill : customerBills) {
+                ShoppingCartUtils.printTextInCenter("| " + counter++ + ") ", customerBill.toString(), "|");
+            }
+            userMessage += "Enter 0-" + (counter - 1) + " to remove particular purchase detail, ";
+        }
+        userMessage += "Enter " + counter + " For add new purchase detail or press any key to countine :";
+        ShoppingCartUtils.printLine("*");
+        System.out.print(userMessage);
+
+        int userInput;
+        try {
+            userInput = Integer.parseInt(scanner.nextLine());
+        } catch (Exception exception) {
+            userInput = counter + 1; // to countinue
+        }
+        if (userInput == counter) {
+            // Add the new purchage detail
+            addPurchaseDetailFromUser();
+        } else if (userInput < counter) {
+            // Remove particular purchase detail
+            customerBills.remove(userInput - 1);
+            // Ask again to print purchage detail
+            customerPurchaseDetails();
+        } else {
+            // Countine process....
+        }
+    }
+
+    /**
+     *
+     */
+    private void addPurchaseDetailFromUser() {
+        System.out.print(CustomterBill.HELP + ":");
+        String userInput = scanner.nextLine();
+        try {
+            addCustomerBill(new CustomterBill(userInput));
+            // Back to printing page
+            customerPurchaseDetails();
+        } catch (Exception exception) {
+            System.out.println("ERROR: " + exception.getMessage());
+            addPurchaseDetailFromUser();
+        }
+    }
+
+    /**
+     *
+     */
+    protected void calculateBills() {
+        ShoppingCartUtils.printLine("*");
+        ShoppingCartUtils.printTextInCenter("Generating the bill details");
+        ShoppingCartUtils.printLine("*");
+        ShoppingCartUtils.printTextInCenter("| Customer Name/Type", "Purchase Amount", "Bill Amount |");
+        ShoppingCartUtils.printLine("*");
+        for (CustomterBill customerBill : customerBills) {
+
+            for (DiscountSlab availableDiscountSlab : availableDiscountSlabs) {
+                if (availableDiscountSlab.isEffective(customerBill.getPurchaseAmount())) {
+                    customerBill.setBillAmount(
+                            customerBill.getPurchaseAmount() - (customerBill.getPurchaseAmount() * availableDiscountSlab.getDiscount() / 100));
+                    break;// we got the discount
+                }
+            }
+            // Print the billing detail
+            ShoppingCartUtils.printTextInCenter(
+                    "| " + customerBill.getCustomerName() + " " + customerBill.getCustomerType(),
+                    customerBill.getPurchaseAmount() + CURRENCY,
+                    customerBill.getBillAmount() + CURRENCY + " |");
+        }
+        ShoppingCartUtils.printLine("*");
     }
 }

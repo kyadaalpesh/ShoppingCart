@@ -1,9 +1,20 @@
-# ShoppingCart
+cd /home/alpesh/NetbeansProjects/ShoppingCart; JAVA_HOME=/usr/lib/jvm/java-8-oracle M2_HOME=/home/alpesh/apache-maven-3.3.9 /home/alpesh/apache-maven-3.3.9/bin/mvn "-Dexec.args=-classpath %classpath com.shopping.cart.ShoppingCartTrigger" -Dexec.executable=/usr/lib/jvm/java-8-oracle/bin/java -Dexec.classpathScope=runtime org.codehaus.mojo:exec-maven-plugin:1.2.1:exec
+Running NetBeans Compile On Save execution. Phase execution is skipped and output directories of dependency projects (with Compile on Save turned on) will be used instead of their jar artifacts.
+Scanning for projects...
 
-### Here are the steps to execute the module
-#### java -jar shopping-cart-1.0.jar 
-[shopping_cart_logs.txt](shopping_cart_logs.txt)
-<pre>
+Some problems were encountered while building the effective model for com.shopping.cart:shopping-cart:jar:1.0
+'build.plugins.plugin.version' for org.apache.maven.plugins:maven-jar-plugin is missing. @ line 26, column 21
+
+It is highly recommended to fix these problems because they threaten the stability of your build.
+
+For this reason, future Maven versions might no longer support building such malformed projects.
+
+                                                                        
+------------------------------------------------------------------------
+Building shopping-cart 1.0
+------------------------------------------------------------------------
+
+--- exec-maven-plugin:1.2.1:exec (default-cli) @ shopping-cart ---
 ****************************************************************************************************
 |                            Hello alpesh!!, Welcome to Shopping cart.                             |
 ****************************************************************************************************
@@ -84,4 +95,9 @@ Enter 0-5 to remove particular purchase detail, Enter 6 For add new purchase det
 |                                 Bye Bye alpesh!!, See you again.                                  |
 ****************************************************************************************************
 ------------------------------------------------------------------------
-</pre>
+BUILD SUCCESS
+------------------------------------------------------------------------
+Total time: 02:17 min
+Finished at: 2019-12-12T01:32:37+05:30
+Final Memory: 7M/240M
+------------------------------------------------------------------------
