@@ -3,6 +3,8 @@
 ### Here are the steps to execute the module
 #### java -jar shopping-cart-1.0.jar 
 [shopping_cart_logs.txt](shopping_cart_logs.txt)
+
+#### Following is the output of my local excecution of this module
 <pre>
 ****************************************************************************************************
 |                            Hello alpesh!!, Welcome to Shopping cart.                             |
