@@ -19,7 +19,34 @@ public class ShoppingCartUtils {
         // Its just util class
     }
 
-    public void printLine(String lineCharacter) {
+    /**
+     *
+     * @param lineCharacter
+     */
+    public static void printLine(String lineCharacter) {
         System.out.println(String.format("%" + LINE_LIMIT + "s", lineCharacter).replace(" ", lineCharacter));
+    }
+
+    /**
+     *
+     * @param message
+     */
+    public static void printTextInCenter(String message) {
+        int remainingLenght = LINE_LIMIT - message.length();
+        if (remainingLenght > 1) {
+            System.out.println(
+                    String.format("%-" + (int) (remainingLenght / 2) + "s%" + message.length() + "s %" + (int) (remainingLenght / 2) + "s", "|", message, "|"));
+        } else {
+            System.out.println(message);
+        }
+    }
+
+    /**
+     *
+     * @param percentage
+     * @return
+     */
+    public static int getWidth(int percentage) {
+        return (int) (LINE_LIMIT * percentage / 100);
     }
 }

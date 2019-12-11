@@ -1,10 +1,12 @@
 package com.shopping.cart;
 
+import java.util.Objects;
+
 /**
  *
  * @author Alpesh
  */
-public class DiscountSlab {
+public class DiscountSlab implements Comparable<DiscountSlab> {
 
     // Final help for adding new discount slab
     public static final String HELP = "Please pass the discount slab as : lowerLimit-upperLimit=discount(%). i.e 5000-10000=10";
@@ -41,7 +43,7 @@ public class DiscountSlab {
         // Remove all spaces 
         discountSlabString = discountSlabString.replace(" ", "");
 
-        if (discountSlabString.matches("[0-9]+-[0-9~]+=[0-9]+")) {
+        if (discountSlabString.matches("[0-9]+-([0-9]+|[~]+)=[0-9]+")) {
             String[] limitDiscount = discountSlabString.split("[=]");
 
             // Split the limit
@@ -127,12 +129,40 @@ public class DiscountSlab {
                 || this.lower < discountSlab.upper && discountSlab.upper < this.upper) {
             return true;
         }
-        // Intersection
-        if (discountSlab.lower < this.lower && this.lower < discountSlab.upper
-                || discountSlab.lower < this.upper && this.upper < discountSlab.upper) {
-            return true;
+        return discountSlab.lower < this.lower && this.lower < discountSlab.upper
+                || discountSlab.lower < this.upper && this.upper < discountSlab.upper;
+    }
+
+    @Override
+    public int compareTo(DiscountSlab discountSlab) {
+        return this.lower.compareTo(discountSlab.getLower());
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.lower);
+        hash = 97 * hash + Objects.hashCode(this.upper);
+        hash = 97 * hash + Objects.hashCode(this.discount);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
         }
-        return false;
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final DiscountSlab other = (DiscountSlab) obj;
+        if (!Objects.equals(this.lower, other.lower)) {
+            return false;
+        }
+        if (!Objects.equals(this.upper, other.upper)) {
+            return false;
+        }
+        return Objects.equals(this.discount, other.discount);
     }
 
     /**
@@ -146,5 +176,4 @@ public class DiscountSlab {
                 discount + "%");
 
     }
-
 }

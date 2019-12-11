@@ -1,6 +1,5 @@
-package com.shoppingcart;
+package com.shopping.cart;
 
-import com.shopping.cart.DiscountSlab;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;

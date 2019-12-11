@@ -1,0 +1,102 @@
+cd /home/alpesh/NetbeansProjects/ShoppingCart; JAVA_HOME=/usr/lib/jvm/java-8-oracle M2_HOME=/home/alpesh/apache-maven-3.3.9 /home/alpesh/apache-maven-3.3.9/bin/mvn "-Dexec.args=-classpath %classpath com.shopping.cart.ShoppingCart" -Dexec.executable=/usr/lib/jvm/java-8-oracle/bin/java -Dexec.classpathScope=runtime org.codehaus.mojo:exec-maven-plugin:1.2.1:exec
+Running NetBeans Compile On Save execution. Phase execution is skipped and output directories of dependency projects (with Compile on Save turned on) will be used instead of their jar artifacts.
+Scanning for projects...
+                                                                        
+------------------------------------------------------------------------
+Building shopping-cart 1.0
+------------------------------------------------------------------------
+
+--- exec-maven-plugin:1.2.1:exec (default-cli) @ shopping-cart ---
+****************************************************************************************************
+|                            Hello alpesh!!, Welcome to Shopping cart.                             |
+****************************************************************************************************
+|                              Following are avalable discount slabs                               |
+****************************************************************************************************
+|                  1) DiscountSlab [0$ - 5000$                    ] [        0%]                   |
+|                  2) DiscountSlab [5000$ - 10000$                ] [       10%]                   |
+|                  3) DiscountSlab [10000$ - 9223372036854775807$ ] [       20%]                   |
+****************************************************************************************************
+Enter 0-3 to remove particular slab, Enter 4 For add new discount slab or press enter to countine :
+3
+|                              Following are avalable discount slabs                               |
+****************************************************************************************************
+|                  1) DiscountSlab [0$ - 5000$                    ] [        0%]                   |
+|                  2) DiscountSlab [5000$ - 10000$                ] [       10%]                   |
+****************************************************************************************************
+Enter 0-2 to remove particular slab, Enter 3 For add new discount slab or press enter to countine :
+2
+|                              Following are avalable discount slabs                               |
+****************************************************************************************************
+|                  1) DiscountSlab [0$ - 5000$                    ] [        0%]                   |
+****************************************************************************************************
+Enter 0-1 to remove particular slab, Enter 2 For add new discount slab or press enter to countine :
+1
+|                              Following are avalable discount slabs                               |
+****************************************************************************************************
+|                              There is no discount slabs available.                               |
+****************************************************************************************************
+Enter 1 For add new discount slab or press enter to countine :
+1
+Please pass the discount slab as : lowerLimit-upperLimit=discount(%). i.e 5000-10000=10:
+0-5000=10
+|                              Following are avalable discount slabs                               |
+****************************************************************************************************
+|                  1) DiscountSlab [0$ - 5000$                    ] [       10%]                   |
+****************************************************************************************************
+Enter 0-1 to remove particular slab, Enter 2 For add new discount slab or press enter to countine :
+2
+Please pass the discount slab as : lowerLimit-upperLimit=discount(%). i.e 5000-10000=10:
+4000-6000=20
+ERROR: Provided slab is conflict with : DiscountSlab [0$ - 5000$                    ] [       10%]
+Please pass the discount slab as : lowerLimit-upperLimit=discount(%). i.e 5000-10000=10:
+5000-10000=10
+|                              Following are avalable discount slabs                               |
+****************************************************************************************************
+|                  1) DiscountSlab [0$ - 5000$                    ] [       10%]                   |
+|                  2) DiscountSlab [5000$ - 10000$                ] [       10%]                   |
+****************************************************************************************************
+Enter 0-2 to remove particular slab, Enter 3 For add new discount slab or press enter to countine :
+3
+Please pass the discount slab as : lowerLimit-upperLimit=discount(%). i.e 5000-10000=10:
+10000-20000=25
+|                              Following are avalable discount slabs                               |
+****************************************************************************************************
+|                  1) DiscountSlab [0$ - 5000$                    ] [       10%]                   |
+|                  2) DiscountSlab [5000$ - 10000$                ] [       10%]                   |
+|                  3) DiscountSlab [10000$ - 20000$               ] [       25%]                   |
+****************************************************************************************************
+Enter 0-3 to remove particular slab, Enter 4 For add new discount slab or press enter to countine :
+2
+|                              Following are avalable discount slabs                               |
+****************************************************************************************************
+|                  1) DiscountSlab [0$ - 5000$                    ] [       10%]                   |
+|                  2) DiscountSlab [10000$ - 20000$               ] [       25%]                   |
+****************************************************************************************************
+Enter 0-2 to remove particular slab, Enter 3 For add new discount slab or press enter to countine :
+3
+Please pass the discount slab as : lowerLimit-upperLimit=discount(%). i.e 5000-10000=10:
+5000-10000=20
+|                              Following are avalable discount slabs                               |
+****************************************************************************************************
+|                  1) DiscountSlab [0$ - 5000$                    ] [       10%]                   |
+|                  2) DiscountSlab [5000$ - 10000$                ] [       20%]                   |
+|                  3) DiscountSlab [10000$ - 20000$               ] [       25%]                   |
+****************************************************************************************************
+Enter 0-3 to remove particular slab, Enter 4 For add new discount slab or press enter to countine :
+j
+ERROR: null
+Please pass the discount slab as : lowerLimit-upperLimit=discount(%). i.e 5000-10000=10:
+ERROR: Please pass the discount slab as : lowerLimit-upperLimit=discount(%). i.e 5000-10000=10
+Please pass the discount slab as : lowerLimit-upperLimit=discount(%). i.e 5000-10000=10:
+4500-5500=10
+ERROR: Provided slab is conflict with : DiscountSlab [0$ - 5000$                    ] [       10%]
+Please pass the discount slab as : lowerLimit-upperLimit=discount(%). i.e 5000-10000=10:
+20000-~=30
+|                              Following are avalable discount slabs                               |
+****************************************************************************************************
+|                  1) DiscountSlab [0$ - 5000$                    ] [       10%]                   |
+|                  2) DiscountSlab [5000$ - 10000$                ] [       20%]                   |
+|                  3) DiscountSlab [10000$ - 20000$               ] [       25%]                   |
+|                  4) DiscountSlab [20000$ - 9223372036854775807$ ] [       30%]                   |
+****************************************************************************************************
+Enter 0-4 to remove particular slab, Enter 5 For add new discount slab or press enter to countine :
